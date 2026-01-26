@@ -4,21 +4,19 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
 {
     public static class ProjectWindowBadges
     {
-        private const string EnableBadgesMenu = "Tools/Project Window Badges/Enable Badges";
+        private const string ShowBadgesMenu = "Tools/Project Window Badges/Show Badges";
 
-        private static bool enabled;
-
-        [MenuItem(EnableBadgesMenu, true)]
-        public static bool ValidateEnableBadges()
+        [MenuItem(ShowBadgesMenu, true)]
+        public static bool ValidateShowBadges()
         {
-            Menu.SetChecked(EnableBadgesMenu, enabled);
+            Menu.SetChecked(ShowBadgesMenu, CornerBadgePreferences.instance.ShowBadges);
             return true;
         }
 
-        [MenuItem(EnableBadgesMenu)]
-        public static void ToggleEnableBadges()
+        [MenuItem(ShowBadgesMenu)]
+        public static void ToggleShowBadges()
         {
-            enabled = !enabled;
+            CornerBadgePreferences.instance.ToggleShowBadges();
         }
     }
 }
