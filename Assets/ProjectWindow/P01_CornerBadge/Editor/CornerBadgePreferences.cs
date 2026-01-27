@@ -9,10 +9,22 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
         [field: SerializeField]
         public bool ShowBadges { get; private set; }
 
+        [field: SerializeField]
+        public int NumEventsReceived { get; private set; }
+
         public void ToggleShowBadges()
         {
             ShowBadges = !ShowBadges;
+            if (ShowBadges)
+            {
+                NumEventsReceived = 0;
+            }
             Save(true);
+        }
+
+        public void ReceivedEvent()
+        {
+            NumEventsReceived++;
         }
     }
 }
