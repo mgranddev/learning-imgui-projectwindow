@@ -10,6 +10,12 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
         public bool ShowBadges { get; private set; }
 
         [field: SerializeField]
+        public Color BadgeColor { get; set; } = Color.green;
+
+        [field: SerializeField]
+        public float BadgeSize { get; set; } = 6f;
+
+        [field: SerializeField]
         public int NumEventsReceived { get; private set; }
 
         public void ToggleShowBadges()
