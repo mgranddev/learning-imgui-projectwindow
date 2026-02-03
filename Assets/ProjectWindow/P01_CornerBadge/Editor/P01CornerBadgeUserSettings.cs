@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
 {
-    [FilePath("UserSettings/" + nameof(P01CornerBadgePreferences) + ".asset", FilePathAttribute.Location.ProjectFolder)]
-    public class P01CornerBadgePreferences : ScriptableSingleton<P01CornerBadgePreferences>
+    [FilePath("UserSettings/" + nameof(P01CornerBadgeUserSettings) + ".asset", FilePathAttribute.Location.ProjectFolder)]
+    public class P01CornerBadgeUserSettings : ScriptableSingleton<P01CornerBadgeUserSettings>
     {
         [field: SerializeField]
         public bool ShowBadges { get; private set; }

@@ -17,7 +17,7 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
 
         static ProjectWindowBadges()
         {
-            if (P01CornerBadgePreferences.instance.ShowBadges)
+            if (P01CornerBadgeUserSettings.instance.ShowBadges)
             {
                 EditorApplication.projectWindowItemOnGUI += OnProjectWindowItemGUI;
             }
@@ -26,15 +26,15 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
         [MenuItem(ShowBadgesMenu, true)]
         public static bool ValidateShowBadges()
         {
-            Menu.SetChecked(ShowBadgesMenu, P01CornerBadgePreferences.instance.ShowBadges);
+            Menu.SetChecked(ShowBadgesMenu, P01CornerBadgeUserSettings.instance.ShowBadges);
             return true;
         }
 
         [MenuItem(ShowBadgesMenu)]
         public static void ToggleShowBadges()
         {
-            P01CornerBadgePreferences.instance.ToggleShowBadges();
-            if (P01CornerBadgePreferences.instance.ShowBadges)
+            P01CornerBadgeUserSettings.instance.ToggleShowBadges();
+            if (P01CornerBadgeUserSettings.instance.ShowBadges)
             {
                 EditorApplication.projectWindowItemOnGUI += OnProjectWindowItemGUI;
             }
@@ -48,12 +48,12 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
         [MenuItem(MenuRoot + "/Print Event Count")]
         public static void PrintEventCount()
         {
-            Debug.Log($"Number of events received: {P01CornerBadgePreferences.instance.NumEventsReceived}");
+            Debug.Log($"Number of events received: {P01CornerBadgeUserSettings.instance.NumEventsReceived}");
         }
 
         private static void OnProjectWindowItemGUI(string guid, Rect selectionRect)
         {
-            P01CornerBadgePreferences.instance.ReceivedEvent();
+            P01CornerBadgeUserSettings.instance.ReceivedEvent();
 
             if (Event.current.type == EventType.Repaint)
             {
@@ -63,7 +63,7 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
 
         private static void DrawBadge(Rect selectionRect)
         {
-            var prefs = P01CornerBadgePreferences.instance;
+            var settings = P01CornerBadgeUserSettings.instance;
 
             var isGridView = selectionRect.height >= selectionRect.width && selectionRect.width > SmallIconSize;
             var isListView = !isGridView && Mathf.Approximately(selectionRect.x, ListViewItemX);
@@ -80,7 +80,7 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
             };
 
             var badgeScale = iconSize/SmallIconSize;
-            var scaledBadgeSize = badgeScale*prefs.BadgeSize;
+            var scaledBadgeSize = badgeScale*settings.BadgeSize;
             var scaledBadgePadding = badgeScale*BadgePadding;
             var badgeRect = new Rect()
             {
@@ -90,7 +90,7 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
                 height = scaledBadgeSize
             };
 
-            EditorGUI.DrawRect(badgeRect, prefs.BadgeColor);
+            EditorGUI.DrawRect(badgeRect, settings.BadgeColor);
         }
     }
 }
