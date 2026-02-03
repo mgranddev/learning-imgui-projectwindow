@@ -17,7 +17,7 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
 
         static ProjectWindowBadges()
         {
-            if (CornerBadgePreferences.instance.ShowBadges)
+            if (P01CornerBadgePreferences.instance.ShowBadges)
             {
                 EditorApplication.projectWindowItemOnGUI += OnProjectWindowItemGUI;
             }
@@ -26,15 +26,15 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
         [MenuItem(ShowBadgesMenu, true)]
         public static bool ValidateShowBadges()
         {
-            Menu.SetChecked(ShowBadgesMenu, CornerBadgePreferences.instance.ShowBadges);
+            Menu.SetChecked(ShowBadgesMenu, P01CornerBadgePreferences.instance.ShowBadges);
             return true;
         }
 
         [MenuItem(ShowBadgesMenu)]
         public static void ToggleShowBadges()
         {
-            CornerBadgePreferences.instance.ToggleShowBadges();
-            if (CornerBadgePreferences.instance.ShowBadges)
+            P01CornerBadgePreferences.instance.ToggleShowBadges();
+            if (P01CornerBadgePreferences.instance.ShowBadges)
             {
                 EditorApplication.projectWindowItemOnGUI += OnProjectWindowItemGUI;
             }
@@ -48,12 +48,12 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
         [MenuItem(MenuRoot + "/Print Event Count")]
         public static void PrintEventCount()
         {
-            Debug.Log($"Number of events received: {CornerBadgePreferences.instance.NumEventsReceived}");
+            Debug.Log($"Number of events received: {P01CornerBadgePreferences.instance.NumEventsReceived}");
         }
 
         private static void OnProjectWindowItemGUI(string guid, Rect selectionRect)
         {
-            CornerBadgePreferences.instance.ReceivedEvent();
+            P01CornerBadgePreferences.instance.ReceivedEvent();
 
             if (Event.current.type == EventType.Repaint)
             {
@@ -63,7 +63,7 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
 
         private static void DrawBadge(Rect selectionRect)
         {
-            var prefs = CornerBadgePreferences.instance;
+            var prefs = P01CornerBadgePreferences.instance;
 
             var isGridView = selectionRect.height >= selectionRect.width && selectionRect.width > SmallIconSize;
             var isListView = !isGridView && Mathf.Approximately(selectionRect.x, ListViewItemX);
