@@ -6,7 +6,8 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
     [InitializeOnLoad]
     public static class ProjectWindowBadges
     {
-        private const string ShowBadgesMenu = "Tools/Project Window Badges/Show Badges";
+        private const string MenuRoot = "Tools/P01: Corner Badge";
+        private const string ShowBadgesMenu = MenuRoot + "/Show Badges";
 
         private const float ListViewItemX = 14.0f; // Discovered through testing. Brittle; this may change in the future.
         private const float ListViewIconExtraPaddingX = 3.0f;
@@ -44,7 +45,7 @@ namespace MGrand.ProjectWindow.P01_CornerBadge.Editor
             }
         }
 
-        [MenuItem("Tools/Project Window Badges/Print Event Count")]
+        [MenuItem(MenuRoot + "/Print Event Count")]
         public static void PrintEventCount()
         {
             Debug.Log($"Number of events received: {CornerBadgePreferences.instance.NumEventsReceived}");
